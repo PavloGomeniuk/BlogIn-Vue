@@ -1,8 +1,10 @@
 <template lang="html">
-  <div class="post" v-if="post">
-    <h1 class="post__title">{{ post.title }}</h1>
-    <p class="post__body">{{ post.text }}</p>
-    <p  class="post__id">{{ post._id }}</p>
+  <div class="journal-item">
+      <h3>{{post.title}}</h3>
+       <p class="full-post__text">{{post.text}}</p>
+      <router-link :to="{ name: 'journal'}">
+        <button>Back</button>
+      </router-link> 
   </div>
 </template>
 
@@ -51,30 +53,50 @@
 </script>
 
 <style lang="scss" scoped>
-  .post {
-    position: relative;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 50px 20px 70px;
-    &__title {
-      position: relative;
-      text-transform: uppercase;
-      z-index: 1;
+ .journal-item{
+  display: flex;
+  flex-direction: column;
+    text-align: center;
+    h3{
+      font-size: 40px;
+      margin-bottom: 50px;
     }
-    &__body {
-      position: relative;
-      z-index: 1;
+    p{
+      font-size: 15px;
+      font-style: italic;
+      margin-bottom: 20px;
     }
-    &__id {
-      position: absolute;
-      font-size: 280px;
-      bottom: -50px;
-      margin: 0;
-      color: #eeeeee;
-      right: -20px;
-      line-height: 1;
-      font-weight: 900;
-      z-index: 0;
+    a{
+      button{
+      width:90px;
+      text-align:center;
+      display:block;
+      font-family: arial;
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 14px;
+      border: #1c673a 1px solid;
+      color: #2b332c;
+      padding: 3px;
+      padding-left: 5px;
+      padding-right: 5px;
+       margin: 20px auto;
+      transition: .5s;
+      border-radius: 0px;
+      &:hover {
+        top: 5px;
+        transition: .5s;
+        color: #10FF58;
+        border: #10FF58 1px solid;
+        border-radius: 10px;
+      }
+      &:active {
+        color: #000;
+        border: #1A1A1A 1px solid;
+        transition: .07s;
+        background-color: #FFF;
+      }
+        }
     }
-  }
+}
 </style>

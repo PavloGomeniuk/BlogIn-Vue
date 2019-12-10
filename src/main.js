@@ -5,6 +5,9 @@ import App from './App.vue'
 import Post from './components/Post.vue'
 import Journal from './components/Journal.vue'
 import PostAxios from './components/PostAxios.vue'
+import Login from './components/Login.vue'
+import Profile from './components/Profile.vue'
+import NotFound from './components/NotFound.vue'
 
 Vue.use(Router)
 Vue.use(Meta)
@@ -27,8 +30,30 @@ const router = new Router({
      name:'axios1',
      component: PostAxios,
    },
+   {
+     path: '/login',
+     name:'login',
+     component: Login,
+   },
+   {
+     path: '/profile',
+     name:'profile',
+     component: Profile,
+     props: true,
+   },
+   { path: '/notFound',
+     component: NotFound 
+   },  
  ],
   mode: 'history'
+});
+
+router.beforeEach((to, from, next) => {
+  if (!to.matched.length) {
+    next('/notFound');
+  } else {
+    next();
+  }
 })
 
 new Vue({
