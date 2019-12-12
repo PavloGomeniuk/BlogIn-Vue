@@ -15,7 +15,8 @@
                             Continue Reading 
                             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
                         </button> 
-                    </router-link> 
+                    </router-link>
+                    <button v-on:click="deletepost(post._id)">delete post</button> 
                 </div>
      </section>
  </div>
@@ -43,6 +44,18 @@
             console.log('-----error-------');
             console.log(error);
           })
+      },
+      deletepost(id){
+        if (global.confirm('Вы действительно хотите удалить статью?')) {
+          for (let i = 0; i < this.posts.length; i++) {
+            if (this.posts[i]._id===id) {
+                this.posts.splice(i);
+                console.log(this.posts);
+                axios.delete(`http://localhost:3000/posts/${id}`);
+                break;
+            }
+          }
+        }
       }
     }
   }
